@@ -14,6 +14,7 @@ namespace TheRoadChat
     {
         private int i_user = 1;
         private string myName = "이상철";
+        private string ID = "zktm9903";
         private int friendOrChannel = 0;
         private bool plusFriendOfFriend = false;
 
@@ -115,6 +116,13 @@ namespace TheRoadChat
             else
                 plusFriendOfFriend = false;
             updateLayout();
+        }
+
+        private void buttonPlusFriend_Click(object sender, EventArgs e)
+        {
+            plusFriendForm myPlusFriendForm = new plusFriendForm(this.ID, this.myDBManager);
+
+            myPlusFriendForm.Show();
         }
     }
 }

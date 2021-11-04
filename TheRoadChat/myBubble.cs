@@ -10,13 +10,12 @@ using System.Windows.Forms;
 
 namespace TheRoadChat
 {
-    public partial class opponentBubble : UserControl
+    public partial class myBubble : UserControl
     {
-        public opponentBubble(int i_user, string name, string msg, string time)
+        public myBubble(string msg, string time)
         {
             InitializeComponent();
 
-            labelFriendName.Text = name;
             labelMsg.Text = msg;
             labelTime.Text = time;
         }

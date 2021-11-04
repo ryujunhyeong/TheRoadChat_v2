@@ -123,11 +123,23 @@
     <Compile Include="login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
+    <Compile Include="myBubble.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="myBubble.Designer.cs">
+      <DependentUpon>myBubble.cs</DependentUpon>
+    </Compile>
     <Compile Include="opponentBubble.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="opponentBubble.Designer.cs">
       <DependentUpon>opponentBubble.cs</DependentUpon>
+    </Compile>
+    <Compile Include="plusFriendForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="plusFriendForm.Designer.cs">
+      <DependentUpon>plusFriendForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -146,8 +158,14 @@
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="myBubble.resx">
+      <DependentUpon>myBubble.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="opponentBubble.resx">
       <DependentUpon>opponentBubble.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="plusFriendForm.resx">
+      <DependentUpon>plusFriendForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -178,6 +196,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plusFriend.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

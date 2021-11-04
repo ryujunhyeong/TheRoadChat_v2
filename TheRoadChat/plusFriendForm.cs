@@ -10,23 +10,20 @@ using System.Windows.Forms;
 
 namespace TheRoadChat
 {
-    public partial class InChannelForm : Form
+    public partial class plusFriendForm : Form
     {
-        private int i_channel;
+        private string ID;
         private DBManager myDBManager;
-
         bool On;
         Point Pos;
-        public InChannelForm(int _i_channel, string name, DBManager _myDBManager)
+        
+        public plusFriendForm(string _ID, DBManager _myDBManager)
         {
             InitializeComponent();
             canMoveForm();
 
-            this.i_channel = _i_channel;
-            labelChannelName.Text = name;
-            myDBManager = _myDBManager;
-
-            myDBManager.pullMessage(PanelMsg, labelChannelName.Text);
+            this.ID = _ID;
+            this.myDBManager = _myDBManager;
         }
 
         private void canMoveForm()
@@ -36,6 +33,17 @@ namespace TheRoadChat
             MouseUp += (o, e) => { if (e.Button == MouseButtons.Left) { On = false; Pos = e.Location; } };
         }
 
-        
+        private void buttonPlusFriend_Click(object sender, EventArgs e)
+        {
+            if(textBoxIDInput.Text.CompareTo(this.ID) == 0)
+            {
+                MessageBox.Show("자신의 아이디와 같습니다.");
+                return;
+            }
+
+            this.myDBManager.plusFriend(textBoxIDInput.Text);
+
+
+        }
     }
 }

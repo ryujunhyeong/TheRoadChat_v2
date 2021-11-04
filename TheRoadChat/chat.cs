@@ -87,7 +87,7 @@ namespace TheRoadChat
 
                 foreach (channelInfo channel in channelList)
                 {
-                    channelForm myChannel = new channelForm(channel.i_channel, channel.channelName);
+                    channelForm myChannel = new channelForm(channel.i_channel, channel.channelName, this.myDBManager);
                     layout.Controls.Add(myChannel);
                 }
 

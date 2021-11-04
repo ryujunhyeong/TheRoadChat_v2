@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TheRoadChat
 {
 
-    class channelInfo
+    public class channelInfo
     {
         public int i_channel { get; set; }
         public string channelName { get; set; }

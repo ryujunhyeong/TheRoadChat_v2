@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheRoadChat
 {
-    class friendInfo
+    public class friendInfo
     {
         public int i_user { get; set; }
         public string name { get; set; }

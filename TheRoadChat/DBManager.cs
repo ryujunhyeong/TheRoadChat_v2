@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TheRoadChat
 {
-    class DBManager
+    public class DBManager
     {
         private int i_user;
         private string strconn = "Server=27.96.130.41;Port=3306;Database=s5469775;Uid=s5469775;Pwd=s5469775;Charset=utf8";
@@ -87,6 +88,11 @@ namespace TheRoadChat
                 rdr.Close();
             }
             return myChannels;
+        }
+
+        public void pullMessage(FlowLayoutPanel PanelMsg)
+        {
+            
         }
 
 

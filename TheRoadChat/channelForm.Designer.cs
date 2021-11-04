@@ -51,6 +51,7 @@ namespace TheRoadChat
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.Name = "channelForm";
             this.Size = new System.Drawing.Size(395, 65);
+            this.Click += new System.EventHandler(this.channelForm_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 

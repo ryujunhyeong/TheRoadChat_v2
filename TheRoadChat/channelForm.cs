@@ -12,11 +12,21 @@ namespace TheRoadChat
 {
     public partial class channelForm : UserControl
     {
-        public channelForm(int i_channel, string channel_name)
+        private int i_channel;
+        public channelForm(int _i_channel, string channel_name)
         {
             InitializeComponent();
 
+            this.i_channel = _i_channel;
             labelChannelName.Text = channel_name;
         }
+
+        private void channelForm_Click(object sender, EventArgs e)
+        {
+            InChannelForm myInChannelForm = new InChannelForm(this.i_channel, labelChannelName.Text);
+
+            myInChannelForm.Show();
+        }
+
     }
 }

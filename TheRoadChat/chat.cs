@@ -22,13 +22,23 @@ namespace TheRoadChat
         private List<channelInfo> channelList;
 
         private DBManager myDBManager;
+
+        bool On;
+        Point Pos;
         public chat()
         {
             InitializeComponent();
+            canMoveForm();
             initData();
             updateLayout();
         }
 
+        private void canMoveForm()
+        {
+            MouseDown += (o, e) => { if (e.Button == MouseButtons.Left) { On = true; Pos = e.Location; } };
+            MouseMove += (o, e) => { if (On) Location = new Point(Location.X + (e.X - Pos.X), Location.Y + (e.Y - Pos.Y)); };
+            MouseUp += (o, e) => { if (e.Button == MouseButtons.Left) { On = false; Pos = e.Location; } };
+        }
         private void initData()
         {
             labelMyName.Text = myName;

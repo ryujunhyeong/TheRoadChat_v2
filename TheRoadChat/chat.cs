@@ -31,6 +31,7 @@ namespace TheRoadChat
             InitializeComponent();
             canMoveForm();
             initData();
+            updateData();
             updateLayout();
         }
 
@@ -48,9 +49,18 @@ namespace TheRoadChat
             friendList = new List<friendInfo>();
             friendOfFriendList = new List<friendInfo>();
             channelList = new List<channelInfo>();
+
+
         }
 
-        private void updateLayout()
+        public void updateData()
+        {
+            friendList = myDBManager.selectMyFriendsList(0);
+            friendOfFriendList = myDBManager.selectMyFriendsList(1);
+            channelList = myDBManager.selectMyChannelsList();
+        }
+
+        public void updateLayout()
         {
             layout.Controls.Clear();
 
@@ -59,8 +69,7 @@ namespace TheRoadChat
                 labelFriendOrChannel.Text = "친구";
                 buttonFriendOfFriend.Visible = true;
 
-                friendList = myDBManager.selectMyFriendsList(0);
-                friendOfFriendList = myDBManager.selectMyFriendsList(1);
+                
 
                 foreach (friendInfo friend in friendList)
                 {
@@ -84,7 +93,7 @@ namespace TheRoadChat
                 labelFriendOrChannel.Text = "채팅방";
                 buttonFriendOfFriend.Visible = false;
 
-                channelList = myDBManager.selectMyChannelsList();
+                
 
                 foreach (channelInfo channel in channelList)
                 {
@@ -120,7 +129,7 @@ namespace TheRoadChat
 
         private void buttonPlusFriend_Click(object sender, EventArgs e)
         {
-            plusFriendForm myPlusFriendForm = new plusFriendForm(this.ID, this.myDBManager);
+            plusFriendForm myPlusFriendForm = new plusFriendForm(this, this.ID, this.myDBManager);
 
             myPlusFriendForm.Show();
         }

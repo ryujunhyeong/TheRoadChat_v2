@@ -26,7 +26,7 @@ namespace TheRoadChat
             labelChannelName.Text = name;
             myDBManager = _myDBManager;
 
-            myDBManager.pullMessage(PanelMsg, labelChannelName.Text);
+            myDBManager.pullMessage(PanelMsg, this.i_channel);
         }
 
         private void canMoveForm()

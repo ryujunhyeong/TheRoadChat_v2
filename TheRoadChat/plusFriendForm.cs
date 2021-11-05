@@ -12,18 +12,20 @@ namespace TheRoadChat
 {
     public partial class plusFriendForm : Form
     {
+        private chat mychat;
         private string ID;
         private DBManager myDBManager;
         bool On;
         Point Pos;
         
-        public plusFriendForm(string _ID, DBManager _myDBManager)
+        public plusFriendForm(chat _mychat, string _ID, DBManager _myDBManager)
         {
             InitializeComponent();
             canMoveForm();
 
             this.ID = _ID;
             this.myDBManager = _myDBManager;
+            this.mychat = _mychat;
         }
 
         private void canMoveForm()
@@ -43,7 +45,8 @@ namespace TheRoadChat
 
             this.myDBManager.plusFriend(textBoxIDInput.Text);
 
-
+            mychat.updateData();
+            mychat.updateLayout();
         }
     }
 }

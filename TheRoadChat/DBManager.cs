@@ -90,41 +90,42 @@ namespace TheRoadChat
             return myChannels;
         }
 
-        public void pullMessage(FlowLayoutPanel PanelMsg, int i_channel)
+        public List<messageInfoInChannnel> pullMessage(List<channelInfo> channelList)
         {
-            using (MySqlConnection conn = new MySqlConnection(strconn))
+            List<messageInfoInChannnel> result = new List<messageInfoInChannnel>();
+
+            foreach (channelInfo channel in channelList)
             {
-                conn.Open();
-                string query = "CALL pullMessage(" + i_channel + ")";
-
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                MySqlDataReader rdr = cmd.ExecuteReader();
-
-
-                while (rdr.Read())
+                using (MySqlConnection conn = new MySqlConnection(strconn))
                 {
-                    //필요한 정보들 가져오기
-                    int i_user = int.Parse(rdr["i_user"].ToString());
-                    string user_name = rdr["user_name"].ToString();
-                    string msg = rdr["msg"].ToString();
-                    string m_dt = rdr["m_dt"].ToString().Substring(11);
-                    m_dt = m_dt.Substring(0, 8); //아니 이거 왜이러냐 한번에 왜 안돼 ㅅㅂ
+                    conn.Open();
+                    string query = "CALL pullMessage(" + channel.i_channel + ")";
 
-                    if (this.i_user != i_user)
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    MySqlDataReader rdr = cmd.ExecuteReader();
+
+                    List<messageInfo> messages = new List<messageInfo>();
+
+                    while (rdr.Read())
                     {
-                        opponentBubble myBubble = new opponentBubble(i_user, user_name, msg, m_dt);
-                        PanelMsg.Controls.Add(myBubble);
+                        //필요한 정보들 가져오기
+                        int i_user = int.Parse(rdr["i_user"].ToString());
+                        string user_name = rdr["user_name"].ToString();
+                        string msg = rdr["msg"].ToString();
+                        string m_dt = rdr["m_dt"].ToString().Substring(11);
+                        m_dt = m_dt.Substring(0, 8); //아니 이거 왜이러냐 한번에 왜 안돼 ㅅㅂ
+
+                        messages.Add(new messageInfo(i_user, channel.i_channel, user_name, msg, m_dt));
+
                     }
-                    else
-                    {
-                        myBubble myBubble = new myBubble(msg, m_dt);
-                        PanelMsg.Controls.Add(myBubble);
-                    }
-                    
+
+                    result.Add(new messageInfoInChannnel(channel.i_channel, messages));
+
+                    rdr.Close();
                 }
-
-                rdr.Close();
             }
+            return result;
+            
         }
 
         public bool plusFriend(string ID)

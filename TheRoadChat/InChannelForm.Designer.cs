@@ -69,6 +69,7 @@ namespace TheRoadChat
             this.buttonMsgSend.TabIndex = 3;
             this.buttonMsgSend.Text = "전송";
             this.buttonMsgSend.UseVisualStyleBackColor = true;
+            this.buttonMsgSend.Click += new System.EventHandler(this.buttonMsgSend_Click);
             // 
             // InChannelForm
             // 

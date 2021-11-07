@@ -13,14 +13,16 @@ namespace TheRoadChat
     public partial class chat : Form
     {
         private int i_user = 1;
-        private string myName = "이상철";
+        public static string myName = "이상철";
         private string ID = "zktm9903";
         private int friendOrChannel = 0;
         private bool plusFriendOfFriend = false;
+        public socketIO mySocket;
 
         private List<friendInfo> friendList;
         private List<friendInfo> friendOfFriendList;
         private List<channelInfo> channelList;
+        private List<messageInfoInChannnel> messageInfoInChannnelList;
 
         private DBManager myDBManager;
 
@@ -33,6 +35,11 @@ namespace TheRoadChat
             initData();
             updateData();
             updateLayout();
+
+            
+
+            mySocket = new socketIO(this);
+            entranceChannel();
         }
 
         private void canMoveForm()
@@ -49,7 +56,21 @@ namespace TheRoadChat
             friendList = new List<friendInfo>();
             friendOfFriendList = new List<friendInfo>();
             channelList = new List<channelInfo>();
+            messageInfoInChannnelList = new List<messageInfoInChannnel>();
 
+            
+        }
+
+        private void entranceChannel()
+        {
+            string mychannels = string.Empty;
+
+            foreach(channelInfo mychannel in this.channelList)
+            {
+                mychannels += mychannel.i_channel + " ";
+            }
+
+            socketIO.client.Emit("login", i_user + " " + mychannels);
 
         }
 
@@ -58,6 +79,7 @@ namespace TheRoadChat
             friendList = myDBManager.selectMyFriendsList(0);
             friendOfFriendList = myDBManager.selectMyFriendsList(1);
             channelList = myDBManager.selectMyChannelsList();
+            messageInfoInChannnelList = myDBManager.pullMessage(this.channelList);
         }
 
         public void updateLayout()
@@ -97,7 +119,7 @@ namespace TheRoadChat
 
                 foreach (channelInfo channel in channelList)
                 {
-                    channelForm myChannel = new channelForm(channel.i_channel, channel.channelName, this.myDBManager);
+                    channelForm myChannel = new channelForm(this.i_user, channel.i_channel, channel.channelName, this.myDBManager, this.messageInfoInChannnelList);
                     layout.Controls.Add(myChannel);
                 }
 

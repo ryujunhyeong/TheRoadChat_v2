@@ -12,9 +12,9 @@ namespace TheRoadChat
 {
     public partial class chat : Form
     {
-        private int i_user = 1;
-        public static string myName = "이상철";
-        private string ID = "zktm9903";
+        private int i_user;
+        public static string myName;
+        private string ID;
         private int friendOrChannel = 0;
         private bool plusFriendOfFriend = false;
         public socketIO mySocket;
@@ -23,23 +23,34 @@ namespace TheRoadChat
         private List<friendInfo> friendOfFriendList;
         private List<channelInfo> channelList;
         private List<messageInfoInChannnel> messageInfoInChannnelList;
+        public static Dictionary<int, FlowLayoutPanel> connectChatPanel;
 
         private DBManager myDBManager;
 
         bool On;
         Point Pos;
-        public chat()
+        public chat(int _i_user, string _myName, string _ID)
         {
+
+            this.i_user = _i_user;
+            chat.myName = _myName;
+            this.ID = _ID;
             InitializeComponent();
             canMoveForm();
             initData();
             updateData();
             updateLayout();
-
             
+
+            Console.WriteLine(this.i_user);
+            Console.WriteLine(chat.myName);
+            Console.WriteLine(this.ID);
 
             mySocket = new socketIO(this);
             entranceChannel();
+
+            CheckForIllegalCrossThreadCalls = false;
+
         }
 
         private void canMoveForm()
@@ -57,8 +68,8 @@ namespace TheRoadChat
             friendOfFriendList = new List<friendInfo>();
             channelList = new List<channelInfo>();
             messageInfoInChannnelList = new List<messageInfoInChannnel>();
+            connectChatPanel = new Dictionary<int, FlowLayoutPanel>();
 
-            
         }
 
         private void entranceChannel()
@@ -154,6 +165,11 @@ namespace TheRoadChat
             plusFriendForm myPlusFriendForm = new plusFriendForm(this, this.ID, this.myDBManager);
 
             myPlusFriendForm.Show();
+        }
+
+        private void ButtonClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

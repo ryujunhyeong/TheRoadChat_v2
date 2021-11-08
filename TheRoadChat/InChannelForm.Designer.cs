@@ -33,6 +33,8 @@ namespace TheRoadChat
             this.PanelMsg = new System.Windows.Forms.FlowLayoutPanel();
             this.textBoxMsgInput = new System.Windows.Forms.TextBox();
             this.buttonMsgSend = new System.Windows.Forms.Button();
+            this.ButtonClose = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.ButtonClose)).BeginInit();
             this.SuspendLayout();
             // 
             // labelChannelName
@@ -47,6 +49,7 @@ namespace TheRoadChat
             // 
             // PanelMsg
             // 
+            this.PanelMsg.AutoScroll = true;
             this.PanelMsg.Location = new System.Drawing.Point(0, 65);
             this.PanelMsg.Margin = new System.Windows.Forms.Padding(0);
             this.PanelMsg.Name = "PanelMsg";
@@ -71,11 +74,23 @@ namespace TheRoadChat
             this.buttonMsgSend.UseVisualStyleBackColor = true;
             this.buttonMsgSend.Click += new System.EventHandler(this.buttonMsgSend_Click);
             // 
+            // ButtonClose
+            // 
+            this.ButtonClose.Image = global::TheRoadChat.Properties.Resources.x;
+            this.ButtonClose.Location = new System.Drawing.Point(393, -1);
+            this.ButtonClose.Name = "ButtonClose";
+            this.ButtonClose.Size = new System.Drawing.Size(25, 25);
+            this.ButtonClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ButtonClose.TabIndex = 4;
+            this.ButtonClose.TabStop = false;
+            this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
+            // 
             // InChannelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(417, 600);
+            this.Controls.Add(this.ButtonClose);
             this.Controls.Add(this.buttonMsgSend);
             this.Controls.Add(this.textBoxMsgInput);
             this.Controls.Add(this.PanelMsg);
@@ -83,6 +98,7 @@ namespace TheRoadChat
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "InChannelForm";
             this.Text = "InChannelForm";
+            ((System.ComponentModel.ISupportInitialize)(this.ButtonClose)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -94,5 +110,6 @@ namespace TheRoadChat
         private System.Windows.Forms.FlowLayoutPanel PanelMsg;
         private System.Windows.Forms.TextBox textBoxMsgInput;
         private System.Windows.Forms.Button buttonMsgSend;
+        private System.Windows.Forms.PictureBox ButtonClose;
     }
 }

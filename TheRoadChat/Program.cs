@@ -16,7 +16,7 @@ namespace TheRoadChat
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new chat());
+            Application.Run(new login());
         }
     }
 }

@@ -39,6 +39,7 @@ namespace TheRoadChat
             this.labelMsg.BackColor = System.Drawing.Color.White;
             this.labelMsg.Font = new System.Drawing.Font("굴림", 12F);
             this.labelMsg.Location = new System.Drawing.Point(176, 22);
+            this.labelMsg.MaximumSize = new System.Drawing.Size(200, 500);
             this.labelMsg.MinimumSize = new System.Drawing.Size(200, 30);
             this.labelMsg.Name = "labelMsg";
             this.labelMsg.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -49,6 +50,7 @@ namespace TheRoadChat
             // 
             // labelTime
             // 
+            this.labelTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelTime.AutoSize = true;
             this.labelTime.Location = new System.Drawing.Point(107, 38);
             this.labelTime.Name = "labelTime";
@@ -60,9 +62,11 @@ namespace TheRoadChat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.labelTime);
             this.Controls.Add(this.labelMsg);
+            this.MaximumSize = new System.Drawing.Size(395, 500);
             this.Name = "myBubble";
             this.Size = new System.Drawing.Size(395, 65);
             this.ResumeLayout(false);

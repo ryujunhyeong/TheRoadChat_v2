@@ -30,6 +30,8 @@ namespace TheRoadChat
             myDBManager = _myDBManager;
             this.messages = _messages;
 
+            chat.connectChatPanel.Add(this.i_channel, PanelMsg);
+
             updateMsg();
         }
 
@@ -65,8 +67,18 @@ namespace TheRoadChat
 
             socketIO.client.Emit("chat message", new messageInfo(this.i_user, this.i_channel, chat.myName, textBoxMsgInput.Text, DateTime.Now.ToString("HHmmss")));
 
+            messages.Add(new messageInfo(this.i_user, this.i_channel, chat.myName, textBoxMsgInput.Text, DateTime.Now.ToString("HHmmss")));
+
+            myBubble myBubble = new myBubble(textBoxMsgInput.Text, DateTime.Now.ToString("HHmmss"));
+            PanelMsg.Controls.Add(myBubble);
+            PanelMsg.ScrollControlIntoView(myBubble);
+
             textBoxMsgInput.Text = "";
         }
 
+        private void ButtonClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -16,7 +16,16 @@ namespace TheRoadChat
         {
             InitializeComponent();
         }
-        string strconn = "Server=27.96.130.41;Database=s5727844;Uid=s5727844;Pwd=s5727844;Charset=utf8";
-        //using (MySqlConnection conn = new MySqlConnection(strconn));
+
+
+        private void btn_login_Click(object sender, EventArgs e)
+        {
+            chat mychat = new chat(int.Parse(textBox1.Text), id_login.Text, pw_login.Text);
+
+            mychat.Show();
+
+            this.Hide();
+
+        }
     }
 }

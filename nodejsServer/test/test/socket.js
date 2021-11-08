@@ -2,8 +2,16 @@ var app = require('express')();
 var server = require('http').createServer(app);
 // http server를 socket.io server로 upgrade한다
 var io = require('socket.io')(server);
+const mysql      = require('mysql');
 
-const { addRooms, getRooms, deleteUser, getUsers } = require('./user')
+const connection = mysql.createConnection({
+  host     : '27.96.130.41',
+  user     : 's5469775',
+  password : 's5469775',
+  database : 's5469775'
+});
+
+
 
 // localhost:3000으로 서버에 접속하면 클라이언트로 index.html을 전송한다
 app.get('/', function(req, res) {
@@ -18,9 +26,7 @@ var chat = io.on('connection', function(socket) {
 
     console.log(data);
     // console.log('message from client: ', data);
-
-    var name = socket.name = data.name;
-    var room = socket.room = data.room;
+    var room = socket.room = data.i_channel;
 
     // room에 join한다
     socket.join(room);
@@ -28,15 +34,23 @@ var chat = io.on('connection', function(socket) {
     //chat.to(room).broadcast.emit('chat message', data.msg);
 
     var msg = {
-      from: {
         i_user: data.i_user,
-        name: data.name,
-        room: data.room
-      },
-      msg: data.msg
+        i_channel: data.i_channel,
+        user_name: data.user_name,
+        msg:data.msg,
+        m_dt:data.m_dt
     };
 
     socket.in(room).emit('chat message', msg); //broadcast 동일하게 가능 자신 제외 룸안의 유저
+
+    connection.connect();
+
+    connection.query('INSERT INTO messageTable VALUES(NULL,' + data.i_user + ', '+ data.i_channel + ', "'+ data.msg + '", ' + 'NULL, NULL)', (error, rows, fields) => {
+      if (error) throw error;
+      console.log('User info is: ', rows);
+    });
+
+connection.end();
 
   });
 
@@ -53,10 +67,10 @@ var chat = io.on('connection', function(socket) {
 
 
     for(var room in roomArr){
+      console.log(i_user + ' entrance ' + room);
       socket.join(room);
     }
 
-    addRooms(i_user, roomArr);
     
   });
 

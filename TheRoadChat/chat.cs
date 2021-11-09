@@ -12,6 +12,7 @@ namespace TheRoadChat
 {
     public partial class chat : Form
     {
+        login form;
         private int i_user;
         public static string myName;
         private string ID;
@@ -29,9 +30,9 @@ namespace TheRoadChat
 
         bool On;
         Point Pos;
-        public chat(int _i_user, string _myName, string _ID)
+        public chat(login _form, int _i_user, string _myName, string _ID)
         {
-
+            this.form = _form;
             this.i_user = _i_user;
             chat.myName = _myName;
             this.ID = _ID;
@@ -169,7 +170,8 @@ namespace TheRoadChat
 
         private void ButtonClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.form.Close();
+
         }
     }
 }

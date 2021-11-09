@@ -16,6 +16,8 @@ namespace TheRoadChat
         private int i_channel;
         private DBManager myDBManager;
         private List<messageInfo> messages;
+        private List<opponentBubble> searchMsg1;
+        private List<myBubble> searchMsg2;
 
         bool On;
         Point Pos;
@@ -31,6 +33,9 @@ namespace TheRoadChat
             this.messages = _messages;
 
             chat.connectChatPanel.Add(this.i_channel, PanelMsg);
+
+            this.searchMsg1 = new List<opponentBubble>();
+            this.searchMsg2 = new List<myBubble>();
 
             updateMsg();
         }
@@ -50,11 +55,13 @@ namespace TheRoadChat
                 {
                     opponentBubble myBubble = new opponentBubble(i_user, messageinfo.user_name, messageinfo.msg, messageinfo.m_dt);
                     PanelMsg.Controls.Add(myBubble);
+                    searchMsg1.Add(myBubble);
                 }
                 else
                 {
                     myBubble myBubble = new myBubble(messageinfo.msg, messageinfo.m_dt);
                     PanelMsg.Controls.Add(myBubble);
+                    searchMsg2.Add(myBubble);
                 }
             }
             
@@ -79,6 +86,41 @@ namespace TheRoadChat
         private void ButtonClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void buttonSearchMsg_Click(object sender, EventArgs e)
+        {
+            bool success = false;
+            foreach(opponentBubble bubble in searchMsg1)
+            {
+                if (bubble.msg.Contains(textBoxSearchMsgInput.Text) == true)
+                {
+                    PanelMsg.ScrollControlIntoView(bubble);
+                    bubble.BackColor = Color.Beige;
+                    success = true;
+                    break;
+                }
+                else
+                {
+                    bubble.BackColor = Color.Transparent;
+                }
+            }
+            if(success == false)
+            {
+                foreach (myBubble bubble in searchMsg2)
+                {
+                    if (bubble.msg.Contains(textBoxSearchMsgInput.Text) == true)
+                    {
+                        PanelMsg.ScrollControlIntoView(bubble);
+                        bubble.BackColor = Color.Beige;
+                        break;
+                    }
+                    else
+                    {
+                        bubble.BackColor = Color.Transparent;
+                    }
+                }
+            }
         }
     }
 }

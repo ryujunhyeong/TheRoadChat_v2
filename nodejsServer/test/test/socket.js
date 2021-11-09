@@ -2,7 +2,7 @@ var app = require('express')();
 var server = require('http').createServer(app);
 // http server를 socket.io server로 upgrade한다
 var io = require('socket.io')(server);
-const mysql      = require('mysql');
+const mysql = require('mysql');
 
 const connection = mysql.createConnection({
   host     : '27.96.130.41',
@@ -12,6 +12,7 @@ const connection = mysql.createConnection({
 });
 
 
+connection.connect();
 
 // localhost:3000으로 서버에 접속하면 클라이언트로 index.html을 전송한다
 app.get('/', function(req, res) {
@@ -43,14 +44,11 @@ var chat = io.on('connection', function(socket) {
 
     socket.in(room).emit('chat message', msg); //broadcast 동일하게 가능 자신 제외 룸안의 유저
 
-    connection.connect();
 
-    connection.query('INSERT INTO messageTable VALUES(NULL,' + data.i_user + ', '+ data.i_channel + ', "'+ data.msg + '", ' + 'NULL, NULL)', (error, rows, fields) => {
+    connection.query('INSERT INTO messageTable VALUES(NULL,' + data.i_user + ', '+ data.i_channel + ', "'+ data.msg + '", ' + 'now(), now())', (error, rows, fields) => {
       if (error) throw error;
       console.log('User info is: ', rows);
     });
-
-connection.end();
 
   });
 

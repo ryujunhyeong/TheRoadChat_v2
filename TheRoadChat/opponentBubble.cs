@@ -12,10 +12,12 @@ namespace TheRoadChat
 {
     public partial class opponentBubble : UserControl
     {
+        public string msg;
         public opponentBubble(int i_user, string name, string msg, string time)
         {
             InitializeComponent();
 
+            this.msg = msg;
             labelFriendName.Text = name;
             labelMsg.Text = msg;
             labelTime.Text = time;

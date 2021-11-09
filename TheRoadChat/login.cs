@@ -20,7 +20,7 @@ namespace TheRoadChat
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            chat mychat = new chat(int.Parse(textBox1.Text), id_login.Text, pw_login.Text);
+            chat mychat = new chat(this, int.Parse(textBox1.Text), id_login.Text, pw_login.Text);
 
             mychat.Show();
 

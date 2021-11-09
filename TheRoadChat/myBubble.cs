@@ -12,10 +12,12 @@ namespace TheRoadChat
 {
     public partial class myBubble : UserControl
     {
+        public string msg;
         public myBubble(string msg, string time)
         {
             InitializeComponent();
 
+            this.msg = msg;
             labelMsg.Text = msg;
             labelTime.Text = time;
         }

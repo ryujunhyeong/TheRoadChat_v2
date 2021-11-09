@@ -34,6 +34,8 @@ namespace TheRoadChat
             this.textBoxMsgInput = new System.Windows.Forms.TextBox();
             this.buttonMsgSend = new System.Windows.Forms.Button();
             this.ButtonClose = new System.Windows.Forms.PictureBox();
+            this.textBoxSearchMsgInput = new System.Windows.Forms.TextBox();
+            this.buttonSearchMsg = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonClose)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,11 +87,30 @@ namespace TheRoadChat
             this.ButtonClose.TabStop = false;
             this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
             // 
+            // textBoxSearchMsgInput
+            // 
+            this.textBoxSearchMsgInput.Location = new System.Drawing.Point(224, 31);
+            this.textBoxSearchMsgInput.Name = "textBoxSearchMsgInput";
+            this.textBoxSearchMsgInput.Size = new System.Drawing.Size(100, 21);
+            this.textBoxSearchMsgInput.TabIndex = 5;
+            // 
+            // buttonSearchMsg
+            // 
+            this.buttonSearchMsg.Location = new System.Drawing.Point(330, 31);
+            this.buttonSearchMsg.Name = "buttonSearchMsg";
+            this.buttonSearchMsg.Size = new System.Drawing.Size(75, 23);
+            this.buttonSearchMsg.TabIndex = 6;
+            this.buttonSearchMsg.Text = "검색";
+            this.buttonSearchMsg.UseVisualStyleBackColor = true;
+            this.buttonSearchMsg.Click += new System.EventHandler(this.buttonSearchMsg_Click);
+            // 
             // InChannelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(417, 600);
+            this.Controls.Add(this.buttonSearchMsg);
+            this.Controls.Add(this.textBoxSearchMsgInput);
             this.Controls.Add(this.ButtonClose);
             this.Controls.Add(this.buttonMsgSend);
             this.Controls.Add(this.textBoxMsgInput);
@@ -111,5 +132,7 @@ namespace TheRoadChat
         private System.Windows.Forms.TextBox textBoxMsgInput;
         private System.Windows.Forms.Button buttonMsgSend;
         private System.Windows.Forms.PictureBox ButtonClose;
+        private System.Windows.Forms.TextBox textBoxSearchMsgInput;
+        private System.Windows.Forms.Button buttonSearchMsg;
     }
 }

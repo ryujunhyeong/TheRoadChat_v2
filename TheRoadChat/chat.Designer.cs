@@ -36,13 +36,15 @@ namespace TheRoadChat
             this.buttonChannelList = new System.Windows.Forms.Button();
             this.layout = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonPlusFriend = new System.Windows.Forms.PictureBox();
+            this.ButtonClose = new System.Windows.Forms.PictureBox();
             this.buttonSetting = new System.Windows.Forms.PictureBox();
             this.userImg = new System.Windows.Forms.PictureBox();
-            this.ButtonClose = new System.Windows.Forms.PictureBox();
+            this.buttonPlusChannel = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.buttonPlusFriend)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ButtonClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userImg)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ButtonClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonPlusChannel)).BeginInit();
             this.SuspendLayout();
             // 
             // labelMyName
@@ -113,6 +115,17 @@ namespace TheRoadChat
             this.buttonPlusFriend.TabStop = false;
             this.buttonPlusFriend.Click += new System.EventHandler(this.buttonPlusFriend_Click);
             // 
+            // ButtonClose
+            // 
+            this.ButtonClose.Image = global::TheRoadChat.Properties.Resources.x;
+            this.ButtonClose.Location = new System.Drawing.Point(393, -2);
+            this.ButtonClose.Name = "ButtonClose";
+            this.ButtonClose.Size = new System.Drawing.Size(25, 25);
+            this.ButtonClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ButtonClose.TabIndex = 0;
+            this.ButtonClose.TabStop = false;
+            this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
+            // 
             // buttonSetting
             // 
             this.buttonSetting.Image = global::TheRoadChat.Properties.Resources.setting;
@@ -133,22 +146,23 @@ namespace TheRoadChat
             this.userImg.TabIndex = 0;
             this.userImg.TabStop = false;
             // 
-            // ButtonClose
+            // buttonPlusChannel
             // 
-            this.ButtonClose.Image = global::TheRoadChat.Properties.Resources.x;
-            this.ButtonClose.Location = new System.Drawing.Point(393, -2);
-            this.ButtonClose.Name = "ButtonClose";
-            this.ButtonClose.Size = new System.Drawing.Size(25, 25);
-            this.ButtonClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ButtonClose.TabIndex = 0;
-            this.ButtonClose.TabStop = false;
-            this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
+            this.buttonPlusChannel.Image = global::TheRoadChat.Properties.Resources.plusChat;
+            this.buttonPlusChannel.Location = new System.Drawing.Point(287, 29);
+            this.buttonPlusChannel.Name = "buttonPlusChannel";
+            this.buttonPlusChannel.Size = new System.Drawing.Size(25, 25);
+            this.buttonPlusChannel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.buttonPlusChannel.TabIndex = 7;
+            this.buttonPlusChannel.TabStop = false;
+            this.buttonPlusChannel.Click += new System.EventHandler(this.buttonPlusChannel_Click);
             // 
             // chat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(417, 600);
+            this.Controls.Add(this.buttonPlusChannel);
             this.Controls.Add(this.buttonPlusFriend);
             this.Controls.Add(this.layout);
             this.Controls.Add(this.buttonChannelList);
@@ -163,9 +177,10 @@ namespace TheRoadChat
             this.Name = "chat";
             this.Text = "chat";
             ((System.ComponentModel.ISupportInitialize)(this.buttonPlusFriend)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ButtonClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSetting)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userImg)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ButtonClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonPlusChannel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -183,5 +198,6 @@ namespace TheRoadChat
         private System.Windows.Forms.FlowLayoutPanel layout;
         private System.Windows.Forms.PictureBox buttonPlusFriend;
         private System.Windows.Forms.PictureBox ButtonClose;
+        private System.Windows.Forms.PictureBox buttonPlusChannel;
     }
 }

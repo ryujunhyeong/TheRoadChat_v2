@@ -73,9 +73,32 @@ namespace TheRoadChat
                         opponentBubble bubble = new opponentBubble(i_user, user_name, msg, m_dt);
                         panel.Controls.Add(bubble);
                         panel.ScrollControlIntoView(bubble);
+
+
+                        foreach (messageInfoInChannnel messages in this.mychatForm.messageInfoInChannnelList)
+                        {
+                            if(messages.i_channel == i_channel)
+                            {
+                                messages.messageInChannel.Add(new messageInfo(i_user, i_channel, user_name, msg, m_dt));
+                            }
+                        }
                     }));
                 
 
+            });
+
+            client.On("checkFriend", (Data) =>
+            {
+                string json = Data[0].ToString();
+
+
+                mychatForm.Invoke(
+                    (System.Action)(() =>
+                    {
+                        chat.thisForm.updateData();
+                        chat.thisForm.updateLayout();
+                    }));
+                
             });
 
         }

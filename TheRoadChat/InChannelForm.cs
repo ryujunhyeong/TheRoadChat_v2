@@ -53,15 +53,15 @@ namespace TheRoadChat
             {
                 if (this.i_user != messageinfo.i_user)
                 {
-                    opponentBubble myBubble = new opponentBubble(i_user, messageinfo.user_name, messageinfo.msg, messageinfo.m_dt);
-                    PanelMsg.Controls.Add(myBubble);
-                    searchMsg1.Add(myBubble);
+                    opponentBubble Bubble = new opponentBubble(i_user, messageinfo.user_name, messageinfo.msg, messageinfo.m_dt);
+                    PanelMsg.Controls.Add(Bubble);
+                    searchMsg1.Add(Bubble);
                 }
                 else
                 {
-                    myBubble myBubble = new myBubble(messageinfo.msg, messageinfo.m_dt);
-                    PanelMsg.Controls.Add(myBubble);
-                    searchMsg2.Add(myBubble);
+                    myBubble Bubble = new myBubble(messageinfo.msg, messageinfo.m_dt);
+                    PanelMsg.Controls.Add(Bubble);
+                    searchMsg2.Add(Bubble);
                 }
             }
             
@@ -121,6 +121,11 @@ namespace TheRoadChat
                     }
                 }
             }
+        }
+
+        private void InChannelForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            chat.connectChatPanel.Remove(this.i_channel);
         }
     }
 }

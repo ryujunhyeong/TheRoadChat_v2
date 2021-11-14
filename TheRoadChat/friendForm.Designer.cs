@@ -29,20 +29,12 @@ namespace TheRoadChat
         /// </summary>
         private void InitializeComponent()
         {
-            this.ImgFriend = new System.Windows.Forms.PictureBox();
             this.labelFriend = new System.Windows.Forms.Label();
+            this.ImgFriend = new System.Windows.Forms.PictureBox();
+            this.buttonDelFriend = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.ImgFriend)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonDelFriend)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ImgFriend
-            // 
-            this.ImgFriend.Image = global::TheRoadChat.Properties.Resources.user;
-            this.ImgFriend.Location = new System.Drawing.Point(16, 7);
-            this.ImgFriend.Name = "ImgFriend";
-            this.ImgFriend.Size = new System.Drawing.Size(35, 35);
-            this.ImgFriend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ImgFriend.TabIndex = 1;
-            this.ImgFriend.TabStop = false;
             // 
             // labelFriend
             // 
@@ -54,17 +46,40 @@ namespace TheRoadChat
             this.labelFriend.TabIndex = 2;
             this.labelFriend.Text = "친구 이름";
             // 
+            // ImgFriend
+            // 
+            this.ImgFriend.Image = global::TheRoadChat.Properties.Resources.user;
+            this.ImgFriend.Location = new System.Drawing.Point(16, 7);
+            this.ImgFriend.Name = "ImgFriend";
+            this.ImgFriend.Size = new System.Drawing.Size(35, 35);
+            this.ImgFriend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ImgFriend.TabIndex = 1;
+            this.ImgFriend.TabStop = false;
+            // 
+            // buttonDelFriend
+            // 
+            this.buttonDelFriend.Image = global::TheRoadChat.Properties.Resources.delFriend;
+            this.buttonDelFriend.Location = new System.Drawing.Point(354, 9);
+            this.buttonDelFriend.Name = "buttonDelFriend";
+            this.buttonDelFriend.Size = new System.Drawing.Size(30, 30);
+            this.buttonDelFriend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.buttonDelFriend.TabIndex = 3;
+            this.buttonDelFriend.TabStop = false;
+            this.buttonDelFriend.Click += new System.EventHandler(this.buttonDelFriend_Click);
+            // 
             // friendForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.Controls.Add(this.buttonDelFriend);
             this.Controls.Add(this.labelFriend);
             this.Controls.Add(this.ImgFriend);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.Name = "friendForm";
             this.Size = new System.Drawing.Size(395, 50);
             ((System.ComponentModel.ISupportInitialize)(this.ImgFriend)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonDelFriend)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -74,5 +89,6 @@ namespace TheRoadChat
 
         private System.Windows.Forms.PictureBox ImgFriend;
         private System.Windows.Forms.Label labelFriend;
+        private System.Windows.Forms.PictureBox buttonDelFriend;
     }
 }

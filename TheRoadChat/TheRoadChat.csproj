@@ -162,6 +162,12 @@
     <Compile Include="opponentBubble.Designer.cs">
       <DependentUpon>opponentBubble.cs</DependentUpon>
     </Compile>
+    <Compile Include="plusChannelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="plusChannelForm.Designer.cs">
+      <DependentUpon>plusChannelForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="plusFriendForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="opponentBubble.resx">
       <DependentUpon>opponentBubble.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="plusChannelForm.resx">
+      <DependentUpon>plusChannelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="plusFriendForm.resx">
       <DependentUpon>plusFriendForm.cs</DependentUpon>
@@ -230,6 +239,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delFriend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plusChat.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

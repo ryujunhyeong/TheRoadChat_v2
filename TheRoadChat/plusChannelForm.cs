@@ -10,22 +10,14 @@ using System.Windows.Forms;
 
 namespace TheRoadChat
 {
-    public partial class plusFriendForm : Form
+    public partial class plusChannelForm : Form
     {
-        private chat mychat;
-        private string ID;
-        private DBManager myDBManager;
         bool On;
         Point Pos;
-        
-        public plusFriendForm(chat _mychat, string _ID, DBManager _myDBManager)
+        public plusChannelForm()
         {
             InitializeComponent();
             canMoveForm();
-
-            this.ID = _ID;
-            this.myDBManager = _myDBManager;
-            this.mychat = _mychat;
         }
 
         private void canMoveForm()
@@ -35,23 +27,26 @@ namespace TheRoadChat
             MouseUp += (o, e) => { if (e.Button == MouseButtons.Left) { On = false; Pos = e.Location; } };
         }
 
-        private void buttonPlusFriend_Click(object sender, EventArgs e)
-        {
-            if(textBoxIDInput.Text.CompareTo(this.ID) == 0)
-            {
-                MessageBox.Show("자신의 아이디와 같습니다.");
-                return;
-            }
-
-            this.myDBManager.plusFriend(textBoxIDInput.Text);
-
-            mychat.updateData();
-            mychat.updateLayout();
-        }
-
         private void ButtonClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void buttonPlusChannel_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(textBoxChannelNameInput.Text) == true)
+            {
+                MessageBox.Show("추가할 채팅방 이름을 입력하세요.");
+                return;
+            }
+
+            chat.thisForm.myDBManager.plusChannel(textBoxChannelNameInput.Text);
+            MessageBox.Show("채팅방을 추가하였습니다.");
+
+            textBoxChannelNameInput.Text = "";
+
+            chat.thisForm.updateData();
+            chat.thisForm.updateLayout();
         }
     }
 }

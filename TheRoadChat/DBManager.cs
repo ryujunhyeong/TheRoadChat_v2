@@ -147,7 +147,11 @@ namespace TheRoadChat
                     if (exist == -1)
                         MessageBox.Show("존재하지 않는 아이디입니다.");
                     else if (exist == 0)
+                    {
                         MessageBox.Show("친구 등록 성공");
+                        socketIO.client.Emit("checkFriend",0);
+                    }
+                        
                     else
                         MessageBox.Show("이미 존재하는 친구 입니다.");
 
@@ -157,6 +161,33 @@ namespace TheRoadChat
             }
 
             return true;
+        }
+
+        public void delFriend(int friends_i_user)
+        {
+            using (MySqlConnection conn = new MySqlConnection(strconn))
+            {
+                conn.Open();
+                string query = "CALL delFriend(" + this.i_user + ", " + friends_i_user + ")";
+
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.ExecuteReader();
+
+            }
+            socketIO.client.Emit("checkFriend", 0);
+        }
+
+        public void plusChannel(string channel_name)
+        {
+            using (MySqlConnection conn = new MySqlConnection(strconn))
+            {
+                conn.Open();
+                string query = "CALL plusChannel(" + this.i_user + ", \"" + channel_name + "\")";
+
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.ExecuteReader();
+
+            }
         }
 
 

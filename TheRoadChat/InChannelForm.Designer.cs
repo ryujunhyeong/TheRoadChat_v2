@@ -119,6 +119,7 @@ namespace TheRoadChat
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "InChannelForm";
             this.Text = "InChannelForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.InChannelForm_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.ButtonClose)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

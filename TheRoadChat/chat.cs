@@ -12,8 +12,9 @@ namespace TheRoadChat
 {
     public partial class chat : Form
     {
+        public static chat thisForm;
         login form;
-        private int i_user;
+        public int i_user;
         public static string myName;
         private string ID;
         private int friendOrChannel = 0;
@@ -23,15 +24,16 @@ namespace TheRoadChat
         private List<friendInfo> friendList;
         private List<friendInfo> friendOfFriendList;
         private List<channelInfo> channelList;
-        private List<messageInfoInChannnel> messageInfoInChannnelList;
+        public List<messageInfoInChannnel> messageInfoInChannnelList;
         public static Dictionary<int, FlowLayoutPanel> connectChatPanel;
 
-        private DBManager myDBManager;
+        public DBManager myDBManager;
 
         bool On;
         Point Pos;
         public chat(login _form, int _i_user, string _myName, string _ID)
         {
+            chat.thisForm = this;
             this.form = _form;
             this.i_user = _i_user;
             chat.myName = _myName;
@@ -41,7 +43,6 @@ namespace TheRoadChat
             initData();
             updateData();
             updateLayout();
-            
 
             Console.WriteLine(this.i_user);
             Console.WriteLine(chat.myName);
@@ -172,6 +173,13 @@ namespace TheRoadChat
         {
             this.form.Close();
 
+        }
+
+        private void buttonPlusChannel_Click(object sender, EventArgs e)
+        {
+            plusChannelForm myPlusChannelForm = new plusChannelForm();
+
+            myPlusChannelForm.Show();
         }
     }
 }

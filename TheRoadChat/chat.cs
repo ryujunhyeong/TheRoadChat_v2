@@ -16,14 +16,14 @@ namespace TheRoadChat
         login form;
         public int i_user;
         public static string myName;
-        private string ID;
+        public string ID;
         private int friendOrChannel = 0;
         private bool plusFriendOfFriend = false;
         public socketIO mySocket;
 
-        private List<friendInfo> friendList;
-        private List<friendInfo> friendOfFriendList;
-        private List<channelInfo> channelList;
+        public List<friendInfo> friendList;
+        public List<friendInfo> friendOfFriendList;
+        public List<channelInfo> channelList;
         public List<messageInfoInChannnel> messageInfoInChannnelList;
         public static Dictionary<int, FlowLayoutPanel> connectChatPanel;
 
@@ -40,15 +40,18 @@ namespace TheRoadChat
             this.ID = _ID;
             InitializeComponent();
             canMoveForm();
-            initData();
-            updateData();
-            updateLayout();
+            
 
             Console.WriteLine(this.i_user);
             Console.WriteLine(chat.myName);
             Console.WriteLine(this.ID);
 
             mySocket = new socketIO(this);
+
+            initData();
+            updateData();
+            updateLayout();
+
             entranceChannel();
 
             CheckForIllegalCrossThreadCalls = false;
@@ -74,7 +77,7 @@ namespace TheRoadChat
 
         }
 
-        private void entranceChannel()
+        public void entranceChannel()
         {
             string mychannels = string.Empty;
 
@@ -82,6 +85,9 @@ namespace TheRoadChat
             {
                 mychannels += mychannel.i_channel + " ";
             }
+
+            if (mychannels.Length == 0)
+                return;
 
             socketIO.client.Emit("login", i_user + " " + mychannels);
 
@@ -127,8 +133,6 @@ namespace TheRoadChat
             {
                 labelFriendOrChannel.Text = "채팅방";
                 buttonFriendOfFriend.Visible = false;
-
-                
 
                 foreach (channelInfo channel in channelList)
                 {

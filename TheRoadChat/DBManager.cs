@@ -10,12 +10,14 @@ namespace TheRoadChat
 {
     public class DBManager
     {
-        private int i_user;
+        public int i_user;
         private string strconn = "Server=27.96.130.41;Port=3306;Database=s5469775;Uid=s5469775;Pwd=s5469775;Charset=utf8";
+        public static DBManager thisDBManager;
 
         public DBManager(int _i_user)
         {
             this.i_user = _i_user;
+            thisDBManager = this;
         }
 
         public List<friendInfo> selectMyFriendsList(int plusFriendOfFriend)
@@ -149,7 +151,7 @@ namespace TheRoadChat
                     else if (exist == 0)
                     {
                         MessageBox.Show("친구 등록 성공");
-                        socketIO.client.Emit("checkFriend",0);
+                        socketIO.client.Emit("checkFriend", ID);
                     }
                         
                     else
@@ -174,7 +176,7 @@ namespace TheRoadChat
                 cmd.ExecuteReader();
 
             }
-            socketIO.client.Emit("checkFriend", 0);
+            socketIO.client.Emit("checkFriend", friends_i_user);
         }
 
         public void plusChannel(string channel_name)
@@ -183,6 +185,19 @@ namespace TheRoadChat
             {
                 conn.Open();
                 string query = "CALL plusChannel(" + this.i_user + ", \"" + channel_name + "\")";
+
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.ExecuteReader();
+
+            }
+        }
+
+        public void inviteChannel(string friendName, int i_channel, string channel_name)
+        {
+            using (MySqlConnection conn = new MySqlConnection(strconn))
+            {
+                conn.Open();
+                string query = "CALL inviteChannel(\"" + friendName + "\", " + i_channel + ", \"" + channel_name + "\")";
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.ExecuteReader();

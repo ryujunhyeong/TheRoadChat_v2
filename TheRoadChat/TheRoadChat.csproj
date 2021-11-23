@@ -142,6 +142,12 @@
     <Compile Include="InChannelForm.Designer.cs">
       <DependentUpon>InChannelForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="InviteChannelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InviteChannelForm.Designer.cs">
+      <DependentUpon>InviteChannelForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InChannelForm.resx">
       <DependentUpon>InChannelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InviteChannelForm.resx">
+      <DependentUpon>InviteChannelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>
@@ -245,6 +254,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\plusChat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -14,6 +14,7 @@ namespace TheRoadChat
     {
         private int i_user;
         private int i_channel;
+        public string channel_name;
         private DBManager myDBManager;
         private List<messageInfo> messages;
         private List<opponentBubble> searchMsg1;
@@ -29,6 +30,7 @@ namespace TheRoadChat
             this.i_user = _i_user;
             this.i_channel = _i_channel;
             labelChannelName.Text = name;
+            channel_name = name;
             myDBManager = _myDBManager;
             this.messages = _messages;
 
@@ -38,6 +40,8 @@ namespace TheRoadChat
             this.searchMsg2 = new List<myBubble>();
 
             updateMsg();
+
+            chat.thisForm.entranceChannel();
         }
 
         private void canMoveForm()
@@ -126,6 +130,13 @@ namespace TheRoadChat
         private void InChannelForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             chat.connectChatPanel.Remove(this.i_channel);
+        }
+
+        private void buttonInvite_Click(object sender, EventArgs e)
+        {
+            InviteChannelForm inviteForm = new InviteChannelForm(this.i_channel, this.channel_name);
+
+            inviteForm.Show();
         }
     }
 }

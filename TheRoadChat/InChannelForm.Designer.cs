@@ -33,9 +33,10 @@ namespace TheRoadChat
             this.PanelMsg = new System.Windows.Forms.FlowLayoutPanel();
             this.textBoxMsgInput = new System.Windows.Forms.TextBox();
             this.buttonMsgSend = new System.Windows.Forms.Button();
-            this.ButtonClose = new System.Windows.Forms.PictureBox();
             this.textBoxSearchMsgInput = new System.Windows.Forms.TextBox();
             this.buttonSearchMsg = new System.Windows.Forms.Button();
+            this.ButtonClose = new System.Windows.Forms.PictureBox();
+            this.buttonInvite = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonClose)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,17 +77,6 @@ namespace TheRoadChat
             this.buttonMsgSend.UseVisualStyleBackColor = true;
             this.buttonMsgSend.Click += new System.EventHandler(this.buttonMsgSend_Click);
             // 
-            // ButtonClose
-            // 
-            this.ButtonClose.Image = global::TheRoadChat.Properties.Resources.x;
-            this.ButtonClose.Location = new System.Drawing.Point(393, -1);
-            this.ButtonClose.Name = "ButtonClose";
-            this.ButtonClose.Size = new System.Drawing.Size(25, 25);
-            this.ButtonClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ButtonClose.TabIndex = 4;
-            this.ButtonClose.TabStop = false;
-            this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
-            // 
             // textBoxSearchMsgInput
             // 
             this.textBoxSearchMsgInput.Location = new System.Drawing.Point(224, 31);
@@ -104,11 +94,33 @@ namespace TheRoadChat
             this.buttonSearchMsg.UseVisualStyleBackColor = true;
             this.buttonSearchMsg.Click += new System.EventHandler(this.buttonSearchMsg_Click);
             // 
+            // ButtonClose
+            // 
+            this.ButtonClose.Image = global::TheRoadChat.Properties.Resources.x;
+            this.ButtonClose.Location = new System.Drawing.Point(393, -1);
+            this.ButtonClose.Name = "ButtonClose";
+            this.ButtonClose.Size = new System.Drawing.Size(25, 25);
+            this.ButtonClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ButtonClose.TabIndex = 4;
+            this.ButtonClose.TabStop = false;
+            this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
+            // 
+            // buttonInvite
+            // 
+            this.buttonInvite.Location = new System.Drawing.Point(143, 29);
+            this.buttonInvite.Name = "buttonInvite";
+            this.buttonInvite.Size = new System.Drawing.Size(75, 23);
+            this.buttonInvite.TabIndex = 8;
+            this.buttonInvite.Text = "친구 초대";
+            this.buttonInvite.UseVisualStyleBackColor = true;
+            this.buttonInvite.Click += new System.EventHandler(this.buttonInvite_Click);
+            // 
             // InChannelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(417, 600);
+            this.Controls.Add(this.buttonInvite);
             this.Controls.Add(this.buttonSearchMsg);
             this.Controls.Add(this.textBoxSearchMsgInput);
             this.Controls.Add(this.ButtonClose);
@@ -135,5 +147,6 @@ namespace TheRoadChat
         private System.Windows.Forms.PictureBox ButtonClose;
         private System.Windows.Forms.TextBox textBoxSearchMsgInput;
         private System.Windows.Forms.Button buttonSearchMsg;
+        private System.Windows.Forms.Button buttonInvite;
     }
 }

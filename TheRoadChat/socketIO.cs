@@ -83,7 +83,6 @@ namespace TheRoadChat
                             }
                         }
                     }));
-                
 
             });
 
@@ -91,16 +90,34 @@ namespace TheRoadChat
             {
                 string json = Data[0].ToString();
 
-
-                mychatForm.Invoke(
+                if(chat.thisForm.i_user.ToString().CompareTo(json) == 0)
+                {
+                    mychatForm.Invoke(
                     (System.Action)(() =>
                     {
                         chat.thisForm.updateData();
                         chat.thisForm.updateLayout();
                     }));
-                
+                }
+                else if (chat.thisForm.ID.CompareTo(json) == 0)
+                {
+                    mychatForm.Invoke(
+                    (System.Action)(() =>
+                    {
+                        chat.thisForm.updateData();
+                        chat.thisForm.updateLayout();
+                    }));
+                }
+                else if (chat.myName.CompareTo(json) == 0)
+                {
+                    mychatForm.Invoke(
+                    (System.Action)(() =>
+                    {
+                        chat.thisForm.updateData();
+                        chat.thisForm.updateLayout();
+                    }));
+                }
             });
-
         }
     }
 }

@@ -103,6 +103,11 @@ namespace TheRoadChat
                                 messages.messageInChannel.Add(new messageInfo(i_user, i_channel, user_name, msg, m_dt, i_file));
                             }
                         }
+
+                        if(chat.thisForm.alarm == true)
+                        {
+                            MessageBox.Show(user_name + " : " + msg);
+                        }
                     }));
 
             });

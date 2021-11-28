@@ -20,6 +20,7 @@ namespace TheRoadChat
         private int friendOrChannel = 0;
         private bool plusFriendOfFriend = false;
         public socketIO mySocket;
+        public bool alarm = true;
 
         public List<friendInfo> friendList;
         public List<friendInfo> friendOfFriendList;
@@ -184,6 +185,20 @@ namespace TheRoadChat
             plusChannelForm myPlusChannelForm = new plusChannelForm();
 
             myPlusChannelForm.Show();
+        }
+
+        private void pictureBoxAlarm_Click(object sender, EventArgs e)
+        {
+            if(this.alarm == true)
+            {
+                this.alarm = false;
+                pictureBoxAlarm.Image = Properties.Resources.alarmOff;
+            }
+            else
+            {
+                this.alarm = true;
+                pictureBoxAlarm.Image = Properties.Resources.alarmOn;
+            }
         }
     }
 }

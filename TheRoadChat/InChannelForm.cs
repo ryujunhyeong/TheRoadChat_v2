@@ -121,6 +121,7 @@ namespace TheRoadChat
             PanelMsg.ScrollControlIntoView(myBubble);
 
             textBoxMsgInput.Text = "";
+            this.searchMsg2.Add(myBubble);
         }
 
         private void ButtonClose_Click(object sender, EventArgs e)
@@ -130,35 +131,28 @@ namespace TheRoadChat
 
         private void buttonSearchMsg_Click(object sender, EventArgs e)
         {
-            bool success = false;
             foreach(opponentBubble bubble in searchMsg1)
             {
                 if (bubble.msg.Contains(textBoxSearchMsgInput.Text) == true)
                 {
                     PanelMsg.ScrollControlIntoView(bubble);
                     bubble.BackColor = Color.Beige;
-                    success = true;
-                    break;
                 }
                 else
                 {
                     bubble.BackColor = Color.Transparent;
                 }
             }
-            if(success == false)
+            foreach (myBubble bubble in searchMsg2)
             {
-                foreach (myBubble bubble in searchMsg2)
+                if (bubble.msg.Contains(textBoxSearchMsgInput.Text) == true)
                 {
-                    if (bubble.msg.Contains(textBoxSearchMsgInput.Text) == true)
-                    {
-                        PanelMsg.ScrollControlIntoView(bubble);
-                        bubble.BackColor = Color.Beige;
-                        break;
-                    }
-                    else
-                    {
-                        bubble.BackColor = Color.Transparent;
-                    }
+                    PanelMsg.ScrollControlIntoView(bubble);
+                    bubble.BackColor = Color.Beige;
+                }
+                else
+                {
+                    bubble.BackColor = Color.Transparent;
                 }
             }
         }

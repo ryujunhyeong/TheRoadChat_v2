@@ -162,11 +162,35 @@
     <Compile Include="myBubble.Designer.cs">
       <DependentUpon>myBubble.cs</DependentUpon>
     </Compile>
+    <Compile Include="myFileBubble.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="myFileBubble.Designer.cs">
+      <DependentUpon>myFileBubble.cs</DependentUpon>
+    </Compile>
+    <Compile Include="myImgBubble.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="myImgBubble.Designer.cs">
+      <DependentUpon>myImgBubble.cs</DependentUpon>
+    </Compile>
     <Compile Include="opponentBubble.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="opponentBubble.Designer.cs">
       <DependentUpon>opponentBubble.cs</DependentUpon>
+    </Compile>
+    <Compile Include="opponentFileBubble.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="opponentFileBubble.Designer.cs">
+      <DependentUpon>opponentFileBubble.cs</DependentUpon>
+    </Compile>
+    <Compile Include="opponentImgBubble.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="opponentImgBubble.Designer.cs">
+      <DependentUpon>opponentImgBubble.cs</DependentUpon>
     </Compile>
     <Compile Include="plusChannelForm.cs">
       <SubType>Form</SubType>
@@ -204,8 +228,20 @@
     <EmbeddedResource Include="myBubble.resx">
       <DependentUpon>myBubble.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="myFileBubble.resx">
+      <DependentUpon>myFileBubble.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="myImgBubble.resx">
+      <DependentUpon>myImgBubble.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="opponentBubble.resx">
       <DependentUpon>opponentBubble.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="opponentFileBubble.resx">
+      <DependentUpon>opponentFileBubble.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="opponentImgBubble.resx">
+      <DependentUpon>opponentImgBubble.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="plusChannelForm.resx">
       <DependentUpon>plusChannelForm.cs</DependentUpon>

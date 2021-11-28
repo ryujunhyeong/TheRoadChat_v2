@@ -37,6 +37,8 @@ namespace TheRoadChat
             this.buttonSearchMsg = new System.Windows.Forms.Button();
             this.ButtonClose = new System.Windows.Forms.PictureBox();
             this.buttonInvite = new System.Windows.Forms.Button();
+            this.buttonImgOrFileSend = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonClose)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,10 +63,10 @@ namespace TheRoadChat
             // 
             // textBoxMsgInput
             // 
-            this.textBoxMsgInput.Location = new System.Drawing.Point(12, 508);
+            this.textBoxMsgInput.Location = new System.Drawing.Point(40, 508);
             this.textBoxMsgInput.Multiline = true;
             this.textBoxMsgInput.Name = "textBoxMsgInput";
-            this.textBoxMsgInput.Size = new System.Drawing.Size(340, 64);
+            this.textBoxMsgInput.Size = new System.Drawing.Size(312, 64);
             this.textBoxMsgInput.TabIndex = 2;
             // 
             // buttonMsgSend
@@ -115,11 +117,26 @@ namespace TheRoadChat
             this.buttonInvite.UseVisualStyleBackColor = true;
             this.buttonInvite.Click += new System.EventHandler(this.buttonInvite_Click);
             // 
+            // buttonImgOrFileSend
+            // 
+            this.buttonImgOrFileSend.Location = new System.Drawing.Point(4, 509);
+            this.buttonImgOrFileSend.Name = "buttonImgOrFileSend";
+            this.buttonImgOrFileSend.Size = new System.Drawing.Size(34, 63);
+            this.buttonImgOrFileSend.TabIndex = 9;
+            this.buttonImgOrFileSend.Text = "+";
+            this.buttonImgOrFileSend.UseVisualStyleBackColor = true;
+            this.buttonImgOrFileSend.Click += new System.EventHandler(this.buttonImgOrFileSend_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // InChannelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(417, 600);
+            this.Controls.Add(this.buttonImgOrFileSend);
             this.Controls.Add(this.buttonInvite);
             this.Controls.Add(this.buttonSearchMsg);
             this.Controls.Add(this.textBoxSearchMsgInput);
@@ -148,5 +165,7 @@ namespace TheRoadChat
         private System.Windows.Forms.TextBox textBoxSearchMsgInput;
         private System.Windows.Forms.Button buttonSearchMsg;
         private System.Windows.Forms.Button buttonInvite;
+        private System.Windows.Forms.Button buttonImgOrFileSend;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

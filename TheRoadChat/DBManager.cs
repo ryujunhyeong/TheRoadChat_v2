@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -116,8 +117,9 @@ namespace TheRoadChat
                         string msg = rdr["msg"].ToString();
                         string m_dt = rdr["m_dt"].ToString().Substring(11);
                         m_dt = m_dt.Substring(0, 8); //아니 이거 왜이러냐 한번에 왜 안돼 ㅅㅂ
+                        int i_file = int.Parse(rdr["i_file"].ToString());
 
-                        messages.Add(new messageInfo(i_user, channel.i_channel, user_name, msg, m_dt));
+                        messages.Add(new messageInfo(i_user, channel.i_channel, user_name, msg, m_dt, i_file));
 
                     }
 
@@ -205,6 +207,156 @@ namespace TheRoadChat
             }
         }
 
+        public int pushFile(int i_user, int i_channel, string fileName, UInt32 fileSize, byte[] fileRawData)
+        {
+            int i_file = 0;
+            using (MySqlConnection conn = new MySqlConnection(strconn))
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand();
 
+                string query = "call pushFileAndGet_i_file(@i_user, @i_channel, @FileName, @FileSize, @fileRawData)";
+
+                cmd.Connection = conn;
+                cmd.CommandText = query;
+                cmd.Parameters.AddWithValue("@i_user", i_user);
+                cmd.Parameters.AddWithValue("@i_channel", i_channel);
+                cmd.Parameters.AddWithValue("@fileName", fileName);
+                cmd.Parameters.AddWithValue("@fileSize", fileSize);
+                cmd.Parameters.AddWithValue("@fileRawData", fileRawData);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+
+                while (rdr.Read())
+                {
+                    //필요한 정보들 가져오기
+                    i_file = int.Parse(rdr["i_file"].ToString());
+
+                }
+
+                rdr.Close();
+            }
+            return i_file;
+        }
+        public string pullFile(int i_file)
+        {
+            string SQL;
+            string FileName;
+            UInt32 FileSize;
+            string FilePath = string.Empty;
+            byte[] rawData;
+            FileStream fs;
+
+            MySqlConnection con = new MySqlConnection(strconn);
+            MySqlCommand cmd = new MySqlCommand();
+
+            string query = "SELECT * from fileTable where i_file = " + i_file;
+
+            try
+            {
+                con.Open();
+
+                cmd.Connection = con;
+                cmd.CommandText = query;
+
+                MySqlDataReader myData = cmd.ExecuteReader();
+
+                if (!myData.HasRows)
+                    throw new Exception("There are no BLOBs to save");
+
+                myData.Read();
+
+                FileName = myData["fileName"].ToString();
+
+                FilePath = @System.IO.Directory.GetCurrentDirectory() + "\\file\\" + FileName;
+
+                Console.WriteLine(FilePath);
+
+                FileInfo fileInfo = new FileInfo(FilePath); //해당 경로 파일 확인
+
+                if (fileInfo.Exists == false) //파일이 없는 경우
+                {
+                    FileSize = myData.GetUInt32(myData.GetOrdinal("fileLength"));
+                    rawData = new byte[FileSize];
+
+                    myData.GetBytes(myData.GetOrdinal("fileData"), 0, rawData, 0, (int)FileSize);
+
+                    fs = new FileStream(FilePath, FileMode.OpenOrCreate, FileAccess.Write);
+                    fs.Write(rawData, 0, (int)FileSize);
+                    fs.Close();
+                }
+
+                myData.Close();
+                con.Close();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                MessageBox.Show("Error " + ex.Number + " has occurred: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return FilePath;
+        }
+
+        public string pullFileWantedPath(int i_file, string path)
+        {
+            string SQL;
+            string FileName;
+            UInt32 FileSize;
+            string FilePath = string.Empty;
+            byte[] rawData;
+            FileStream fs;
+
+            MySqlConnection con = new MySqlConnection(strconn);
+            MySqlCommand cmd = new MySqlCommand();
+
+            string query = "SELECT * from fileTable where i_file = " + i_file;
+
+            try
+            {
+                con.Open();
+
+                cmd.Connection = con;
+                cmd.CommandText = query;
+
+                MySqlDataReader myData = cmd.ExecuteReader();
+
+                if (!myData.HasRows)
+                    throw new Exception("There are no BLOBs to save");
+
+                myData.Read();
+
+                FileName = myData["fileName"].ToString();
+
+                FilePath = path + "\\" + FileName;
+
+                Console.WriteLine(FilePath);
+
+                FileInfo fileInfo = new FileInfo(FilePath); //해당 경로 파일 확인
+
+                if (fileInfo.Exists == false) //파일이 없는 경우
+                {
+                    FileSize = myData.GetUInt32(myData.GetOrdinal("fileLength"));
+                    rawData = new byte[FileSize];
+
+                    myData.GetBytes(myData.GetOrdinal("fileData"), 0, rawData, 0, (int)FileSize);
+
+                    fs = new FileStream(FilePath, FileMode.OpenOrCreate, FileAccess.Write);
+                    fs.Write(rawData, 0, (int)FileSize);
+                    fs.Close();
+                }
+
+                myData.Close();
+                con.Close();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                MessageBox.Show("Error " + ex.Number + " has occurred: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return FilePath;
+
+        }
     }
 }

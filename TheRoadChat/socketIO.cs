@@ -64,22 +64,43 @@ namespace TheRoadChat
                 string user_name = JObject.Parse(json)["user_name"].ToObject<string>();
                 string msg = JObject.Parse(json)["msg"].ToObject<string>();
                 string m_dt = JObject.Parse(json)["m_dt"].ToObject<string>();
+                int i_file = JObject.Parse(json)["i_file"].ToObject<int>();
 
                 FlowLayoutPanel panel = chat.connectChatPanel[i_channel];
 
                 mychatForm.Invoke(
                     (System.Action)(() =>
                     {
-                        opponentBubble bubble = new opponentBubble(i_user, user_name, msg, m_dt);
-                        panel.Controls.Add(bubble);
-                        panel.ScrollControlIntoView(bubble);
+                        if(i_file == 0) //일반 메세지 수신
+                        {
+                            opponentBubble bubble = new opponentBubble(i_user, user_name, msg, m_dt);
+                            panel.Controls.Add(bubble);
+                            panel.ScrollControlIntoView(bubble);
+                        }
+                        else
+                        {
+                            if (msg.CompareTo("img") == 0) //이미지 파일 수신
+                            {
+                                string path = DBManager.thisDBManager.pullFile(i_file);
+                                opponentImgBubble bubble = new opponentImgBubble(path, user_name, msg, m_dt);
+                                panel.Controls.Add(bubble);
+                                panel.ScrollControlIntoView(bubble);
+                            }
+                            else //파일 수신
+                            {
+                                opponentFileBubble bubble = new opponentFileBubble(i_file, user_name, m_dt);
+                                panel.Controls.Add(bubble);
+                                panel.ScrollControlIntoView(bubble);
+                            }
+                        }
+                        
 
 
                         foreach (messageInfoInChannnel messages in this.mychatForm.messageInfoInChannnelList)
                         {
                             if(messages.i_channel == i_channel)
                             {
-                                messages.messageInChannel.Add(new messageInfo(i_user, i_channel, user_name, msg, m_dt));
+                                messages.messageInChannel.Add(new messageInfo(i_user, i_channel, user_name, msg, m_dt, i_file));
                             }
                         }
                     }));

@@ -34,10 +34,14 @@ namespace TheRoadChat
             {
                 if(this.i_channel == messages.i_channel)
                 {
-                    InChannelForm myInChannelForm = new InChannelForm(this.i_user, this.i_channel, labelChannelName.Text, this.myDBManager, messages.messageInChannel);
+                    if (chat.connectChatPanel.ContainsKey(this.i_channel) == false)
+                    {
+                        InChannelForm myInChannelForm = new InChannelForm(this.i_user, this.i_channel, labelChannelName.Text, this.myDBManager, messages.messageInChannel);
 
-                    myInChannelForm.Show();
-                    break;
+                        myInChannelForm.Show();
+                        break;
+                    }
+                    
 
                 }
             }

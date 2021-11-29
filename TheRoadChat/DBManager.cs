@@ -153,7 +153,7 @@ namespace TheRoadChat
                     else if (exist == 0)
                     {
                         MessageBox.Show("친구 등록 성공");
-                        socketIO.client.Emit("checkFriend", ID);
+                        socketIO.client.Emit("checkFriend", 0);
                     }
                         
                     else
@@ -178,7 +178,7 @@ namespace TheRoadChat
                 cmd.ExecuteReader();
 
             }
-            socketIO.client.Emit("checkFriend", friends_i_user);
+            socketIO.client.Emit("checkFriend", 0);
         }
 
         public void plusChannel(string channel_name)

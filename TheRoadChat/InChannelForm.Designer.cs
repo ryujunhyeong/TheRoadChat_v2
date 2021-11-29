@@ -39,6 +39,7 @@ namespace TheRoadChat
             this.buttonInvite = new System.Windows.Forms.Button();
             this.buttonImgOrFileSend = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.buttonEmoticon = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonClose)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,11 +132,22 @@ namespace TheRoadChat
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // buttonEmoticon
+            // 
+            this.buttonEmoticon.Location = new System.Drawing.Point(4, 574);
+            this.buttonEmoticon.Name = "buttonEmoticon";
+            this.buttonEmoticon.Size = new System.Drawing.Size(75, 23);
+            this.buttonEmoticon.TabIndex = 10;
+            this.buttonEmoticon.Text = "이모티콘";
+            this.buttonEmoticon.UseVisualStyleBackColor = true;
+            this.buttonEmoticon.Click += new System.EventHandler(this.buttonEmoticon_Click);
+            // 
             // InChannelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(417, 600);
+            this.Controls.Add(this.buttonEmoticon);
             this.Controls.Add(this.buttonImgOrFileSend);
             this.Controls.Add(this.buttonInvite);
             this.Controls.Add(this.buttonSearchMsg);
@@ -167,5 +179,6 @@ namespace TheRoadChat
         private System.Windows.Forms.Button buttonInvite;
         private System.Windows.Forms.Button buttonImgOrFileSend;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button buttonEmoticon;
     }
 }

@@ -129,6 +129,12 @@
     </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="DBManager.cs" />
+    <Compile Include="emoticonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="emoticonForm.Designer.cs">
+      <DependentUpon>emoticonForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="friendForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -212,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="chat.resx">
       <DependentUpon>chat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="emoticonForm.resx">
+      <DependentUpon>emoticonForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="friendForm.resx">
       <DependentUpon>friendForm.cs</DependentUpon>
@@ -299,6 +308,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\alarmOn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\duck.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -71,6 +71,20 @@ namespace TheRoadChat
                         searchMsg2.Add(Bubble);
                     }
                 }
+                else if(messageinfo.i_file == -1)
+                {
+                    if (this.i_user != messageinfo.i_user)
+                    {
+                        opponentImgBubble Bubble = new opponentImgBubble(messageinfo.msg, messageinfo.user_name, messageinfo.msg, messageinfo.m_dt);
+                        PanelMsg.Controls.Add(Bubble);
+                    }
+                    else
+                    {
+                        string path = DBManager.thisDBManager.pullFile(messageinfo.i_file);
+                        myImgBubble Bubble = new myImgBubble(messageinfo.msg, messageinfo.msg, messageinfo.m_dt);
+                        PanelMsg.Controls.Add(Bubble);
+                    }
+                }
                 else //파일 메세지
                 {
                     if (messageinfo.msg.CompareTo("img") == 0) //이미지 
@@ -244,6 +258,22 @@ namespace TheRoadChat
                 PanelMsg.ScrollControlIntoView(Bubble);
             }
 
+        }
+
+        private void buttonEmoticon_Click(object sender, EventArgs e)
+        {
+            emoticonForm emoticon = new emoticonForm(this);
+
+            emoticon.Show();
+        }
+
+        public void emoticonSend(string path)
+        {
+            myImgBubble Bubble = new myImgBubble(path, "emo", DateTime.Now.ToString("HHmmss"));
+            PanelMsg.Controls.Add(Bubble);
+            PanelMsg.ScrollControlIntoView(Bubble);
+
+            socketIO.client.Emit("chat message", new messageInfo(this.i_user, this.i_channel, chat.myName, path, DateTime.Now.ToString("HHmmss"), -1));
         }
     }
 }

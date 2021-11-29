@@ -77,6 +77,12 @@ namespace TheRoadChat
                             panel.Controls.Add(bubble);
                             panel.ScrollControlIntoView(bubble);
                         }
+                        else if(i_file == -1)
+                        {
+                            opponentImgBubble bubble = new opponentImgBubble(msg, user_name, msg, m_dt);
+                            panel.Controls.Add(bubble);
+                            panel.ScrollControlIntoView(bubble);
+                        }
                         else
                         {
                             if (msg.CompareTo("img") == 0) //이미지 파일 수신
@@ -115,8 +121,17 @@ namespace TheRoadChat
             client.On("checkFriend", (Data) =>
             {
                 string json = Data[0].ToString();
-
-                if(chat.thisForm.i_user.ToString().CompareTo(json) == 0)
+                int idx = 0;
+                if(idx.ToString().CompareTo(json) == 0)
+                {
+                    mychatForm.Invoke(
+                    (System.Action)(() =>
+                    {
+                        chat.thisForm.updateData();
+                        chat.thisForm.updateLayout();
+                    }));
+                }
+                else if(chat.thisForm.i_user.ToString().CompareTo(json) == 0)
                 {
                     mychatForm.Invoke(
                     (System.Action)(() =>

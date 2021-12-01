@@ -12,7 +12,8 @@ namespace TheRoadChat
     public class DBManager
     {
         public int i_user;
-        private string strconn = "Server=27.96.130.41;Port=3306;Database=s5469775;Uid=s5469775;Pwd=s5469775;Charset=utf8";
+        //private string strconn = "Server=27.96.130.41;Port=3306;Database=s5469775;Uid=s5469775;Pwd=s5469775;Charset=utf8";
+        private string strconn = "Server=210.125.31.247;Database = theroad;Uid=test;Pwd=s1234;Charset=utf8";
         public static DBManager thisDBManager;
 
         public DBManager(int _i_user)

@@ -5,10 +5,10 @@ var io = require("socket.io")(server);
 const mysql = require("mysql");
 
 const connection = mysql.createConnection({
-  host: "27.96.130.41",
-  user: "s5469775",
-  password: "s5469775",
-  database: "s5469775",
+  host: "210.125.31.247",
+  user: "test",
+  password: "s1234",
+  database: "theroad",
 });
 
 connection.connect();

@@ -98,5 +98,10 @@ namespace TheRoadChat
 
             this.Close();
         }
+
+        private void selectAddrBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

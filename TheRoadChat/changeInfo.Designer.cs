@@ -70,6 +70,7 @@ namespace TheRoadChat
             this.selectAddrBtn.TabIndex = 23;
             this.selectAddrBtn.Text = "주소검색";
             this.selectAddrBtn.UseVisualStyleBackColor = true;
+            this.selectAddrBtn.Click += new System.EventHandler(this.selectAddrBtn_Click);
             // 
             // changeInfoBtn
             // 

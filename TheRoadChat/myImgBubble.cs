@@ -19,7 +19,9 @@ namespace TheRoadChat
 
             this.msg = msg;
             labelTime.Text = time;
+            Console.WriteLine(filePath);
             pictureBoxImg.Load(filePath);
+
         }
     }
 }

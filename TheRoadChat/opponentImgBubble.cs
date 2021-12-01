@@ -20,6 +20,7 @@ namespace TheRoadChat
             this.msg = msg;
             labelFriendName.Text = name;
             labelTime.Text = time;
+            Console.WriteLine(filePath);
             pictureBoxImg.Load(filePath);
         }
     }

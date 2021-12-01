@@ -27,12 +27,12 @@ namespace TheRoadChat
 
         private void pictureBoxEmo1_Click(object sender, EventArgs e)
         {
-            inChannelForm.emoticonSend(pictureBoxEmo1Path);
+            inChannelForm.emoticonSend("emo1.gif");
         }
 
         private void pictureBoxEmo2_Click(object sender, EventArgs e)
         {
-            inChannelForm.emoticonSend(pictureBoxEmo2Path);
+            inChannelForm.emoticonSend("emo2.gif");
         }
     }
 }

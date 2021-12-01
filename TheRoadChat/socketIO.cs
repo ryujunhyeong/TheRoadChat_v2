@@ -79,7 +79,8 @@ namespace TheRoadChat
                         }
                         else if(i_file == -1)
                         {
-                            opponentImgBubble bubble = new opponentImgBubble(msg, user_name, msg, m_dt);
+                            string realPath = System.Windows.Forms.Application.StartupPath + "\\emoticon\\" + msg;
+                            opponentImgBubble bubble = new opponentImgBubble(realPath, user_name, msg, m_dt);
                             panel.Controls.Add(bubble);
                             panel.ScrollControlIntoView(bubble);
                         }

@@ -75,13 +75,14 @@ namespace TheRoadChat
                 {
                     if (this.i_user != messageinfo.i_user)
                     {
-                        opponentImgBubble Bubble = new opponentImgBubble(messageinfo.msg, messageinfo.user_name, messageinfo.msg, messageinfo.m_dt);
+                        string realPath = System.Windows.Forms.Application.StartupPath + "\\emoticon\\" + messageinfo.msg;
+                        opponentImgBubble Bubble = new opponentImgBubble(realPath, messageinfo.user_name, messageinfo.msg, messageinfo.m_dt);
                         PanelMsg.Controls.Add(Bubble);
                     }
                     else
                     {
-                        string path = DBManager.thisDBManager.pullFile(messageinfo.i_file);
-                        myImgBubble Bubble = new myImgBubble(messageinfo.msg, messageinfo.msg, messageinfo.m_dt);
+                        string realPath = System.Windows.Forms.Application.StartupPath + "\\emoticon\\" + messageinfo.msg;
+                        myImgBubble Bubble = new myImgBubble(realPath, messageinfo.msg, messageinfo.m_dt);
                         PanelMsg.Controls.Add(Bubble);
                     }
                 }
@@ -269,11 +270,15 @@ namespace TheRoadChat
 
         public void emoticonSend(string path)
         {
-            myImgBubble Bubble = new myImgBubble(path, "emo", DateTime.Now.ToString("HHmmss"));
+            //Console.WriteLine(path);
+            string realPath = System.Windows.Forms.Application.StartupPath + "\\emoticon\\" + path;
+            Console.WriteLine(realPath);
+            myImgBubble Bubble = new myImgBubble(realPath, "emo", DateTime.Now.ToString("HHmmss"));
             PanelMsg.Controls.Add(Bubble);
             PanelMsg.ScrollControlIntoView(Bubble);
 
             socketIO.client.Emit("chat message", new messageInfo(this.i_user, this.i_channel, chat.myName, path, DateTime.Now.ToString("HHmmss"), -1));
+            messages.Add(new messageInfo(this.i_user, this.i_channel, chat.myName, path, DateTime.Now.ToString("HHmmss"), -1));
         }
     }
 }

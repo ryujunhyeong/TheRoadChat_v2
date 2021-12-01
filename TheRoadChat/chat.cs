@@ -13,7 +13,7 @@ namespace TheRoadChat
     public partial class chat : Form
     {
         public static chat thisForm;
-        login form;
+        public login form;
         public int i_user;
         public static string myName;
         public string ID;
@@ -199,6 +199,13 @@ namespace TheRoadChat
                 this.alarm = true;
                 pictureBoxAlarm.Image = Properties.Resources.alarmOn;
             }
+        }
+
+        private void buttonSetting_Click(object sender, EventArgs e)
+        {
+            changeInfo myChangeInfo = new changeInfo(this.form, this, this.i_user, this.ID);
+
+            myChangeInfo.Show();
         }
     }
 }

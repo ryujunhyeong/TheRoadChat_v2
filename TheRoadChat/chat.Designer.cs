@@ -148,6 +148,7 @@ namespace TheRoadChat
             this.buttonSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.buttonSetting.TabIndex = 0;
             this.buttonSetting.TabStop = false;
+            this.buttonSetting.Click += new System.EventHandler(this.buttonSetting_Click);
             // 
             // userImg
             // 

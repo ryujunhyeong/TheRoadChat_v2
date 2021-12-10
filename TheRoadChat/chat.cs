@@ -42,7 +42,9 @@ namespace TheRoadChat
             this.ID = _ID;
             InitializeComponent();
             canMoveForm();
-            
+            timer1.Start();
+            timer1.Interval = 1000;
+
 
             Console.WriteLine(this.i_user);
             Console.WriteLine(chat.myName);
@@ -223,6 +225,12 @@ namespace TheRoadChat
             changeInfo myChangeInfo = new changeInfo(this.form, this, this.i_user, this.ID);
 
             myChangeInfo.Show();
+        }
+
+        private void timer1_tick(object sender, EventArgs e)
+        {
+
+            timeLabel.Text = System.DateTime.Now.ToString("MM-dd hh:mm:ss");
         }
     }
 }

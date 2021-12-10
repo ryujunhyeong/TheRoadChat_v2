@@ -359,5 +359,135 @@ namespace TheRoadChat
             return FilePath;
 
         }
+        public void pullProfile(int i_user)
+        {
+            string SQL;
+            string FileName;
+            UInt32 FileSize;
+            string FilePath = string.Empty;
+            byte[] rawData;
+            FileStream fs;
+
+            MySqlConnection con = new MySqlConnection(strconn);
+            MySqlCommand cmd = new MySqlCommand();
+
+            string query = "SELECT * from usertable where i_user = " + i_user;
+
+            try
+            {
+                con.Open();
+
+                cmd.Connection = con;
+                cmd.CommandText = query;
+
+                MySqlDataReader myData = cmd.ExecuteReader();
+
+                if (!myData.HasRows)
+                    throw new Exception("There are no BLOBs to save");
+
+                myData.Read();
+
+                FileName = i_user + ".png";
+
+                FilePath = @System.IO.Directory.GetCurrentDirectory() + "\\profile\\" + FileName;
+
+                Console.WriteLine(FilePath);
+
+                FileSize = myData.GetUInt32(myData.GetOrdinal("pictureSize"));
+                rawData = new byte[FileSize];
+
+                myData.GetBytes(myData.GetOrdinal("picture"), 0, rawData, 0, (int)FileSize);
+
+                fs = new FileStream(FilePath, FileMode.OpenOrCreate, FileAccess.Write);
+                fs.Write(rawData, 0, (int)FileSize);
+                fs.Close();
+
+                myData.Close();
+                con.Close();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                MessageBox.Show("Error " + ex.Number + " has occurred: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public int get_i_userFromName(string name)
+        {
+            int i_user = 0;
+            using (MySqlConnection conn = new MySqlConnection(strconn))
+            {
+                conn.Open();
+                string query = "select * from usertable where user_name = \"" + name + "\"";
+
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+
+                while (rdr.Read())
+                {
+                    //필요한 정보들 가져오기
+                    i_user = int.Parse(rdr["i_user"].ToString());
+                }
+
+                rdr.Close();
+            }
+            return i_user;
+        }
+
+        public void pullProfileName(string name)
+        {
+            string SQL;
+            string FileName;
+            UInt32 FileSize;
+            string FilePath = string.Empty;
+            byte[] rawData;
+            FileStream fs;
+
+            MySqlConnection con = new MySqlConnection(strconn);
+            MySqlCommand cmd = new MySqlCommand();
+
+            string query = "SELECT * from usertable where user_name = \"" + name + "\"";
+
+            try
+            {
+                con.Open();
+
+                cmd.Connection = con;
+                cmd.CommandText = query;
+
+                MySqlDataReader myData = cmd.ExecuteReader();
+
+                if (!myData.HasRows)
+                    throw new Exception("There are no BLOBs to save");
+
+                myData.Read();
+
+                int i_user = int.Parse(myData["i_user"].ToString());
+
+                FileName = i_user + ".png";
+
+                FilePath = @System.IO.Directory.GetCurrentDirectory() + "\\profile\\" + FileName;
+
+                Console.WriteLine(FilePath);
+
+                FileSize = myData.GetUInt32(myData.GetOrdinal("pictureSize"));
+                rawData = new byte[FileSize];
+
+                myData.GetBytes(myData.GetOrdinal("picture"), 0, rawData, 0, (int)FileSize);
+
+                fs = new FileStream(FilePath, FileMode.OpenOrCreate, FileAccess.Write);
+                fs.Write(rawData, 0, (int)FileSize);
+                fs.Close();
+
+                myData.Close();
+                con.Close();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                MessageBox.Show("Error " + ex.Number + " has occurred: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

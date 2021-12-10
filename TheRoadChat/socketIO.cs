@@ -29,6 +29,7 @@ namespace TheRoadChat
 
         public void socketinit()
         {
+            string awsAddress = "ec2-3-20-205-174.us-east-2.compute.amazonaws.com";
             client = new SocketIOClient(new SocketIOClientOption(EngineIOScheme.http, "localhost", 3000));
             InitEventHandlers(client);
             client.Connect();
@@ -66,40 +67,51 @@ namespace TheRoadChat
                 string m_dt = JObject.Parse(json)["m_dt"].ToObject<string>();
                 int i_file = JObject.Parse(json)["i_file"].ToObject<int>();
 
-                FlowLayoutPanel panel = chat.connectChatPanel[i_channel];
+                bool isOpenChatRoom = false;
+                FlowLayoutPanel panel = null;
+
+                if (chat.connectChatPanel.ContainsKey(i_channel) == true)
+                {
+                    panel = chat.connectChatPanel[i_channel];
+                    isOpenChatRoom = true;
+                }
 
                 mychatForm.Invoke(
                     (System.Action)(() =>
                     {
-                        if(i_file == 0) //일반 메세지 수신
+                        if(isOpenChatRoom == true)
                         {
-                            opponentBubble bubble = new opponentBubble(i_user, user_name, msg, m_dt);
-                            panel.Controls.Add(bubble);
-                            panel.ScrollControlIntoView(bubble);
-                        }
-                        else if(i_file == -1)
-                        {
-                            string realPath = System.Windows.Forms.Application.StartupPath + "\\emoticon\\" + msg;
-                            opponentImgBubble bubble = new opponentImgBubble(realPath, user_name, msg, m_dt);
-                            panel.Controls.Add(bubble);
-                            panel.ScrollControlIntoView(bubble);
-                        }
-                        else
-                        {
-                            if (msg.CompareTo("img") == 0) //이미지 파일 수신
+                            if (i_file == 0) //일반 메세지 수신
                             {
-                                string path = DBManager.thisDBManager.pullFile(i_file);
-                                opponentImgBubble bubble = new opponentImgBubble(path, user_name, msg, m_dt);
+                                opponentBubble bubble = new opponentBubble(i_user, user_name, msg, m_dt);
                                 panel.Controls.Add(bubble);
                                 panel.ScrollControlIntoView(bubble);
                             }
-                            else //파일 수신
+                            else if (i_file == -1)
                             {
-                                opponentFileBubble bubble = new opponentFileBubble(i_file, user_name, m_dt);
+                                string realPath = System.Windows.Forms.Application.StartupPath + "\\emoticon\\" + msg;
+                                opponentImgBubble bubble = new opponentImgBubble(realPath, user_name, msg, m_dt);
                                 panel.Controls.Add(bubble);
                                 panel.ScrollControlIntoView(bubble);
                             }
+                            else
+                            {
+                                if (msg.CompareTo("img") == 0) //이미지 파일 수신
+                                {
+                                    string path = DBManager.thisDBManager.pullFile(i_file);
+                                    opponentImgBubble bubble = new opponentImgBubble(path, user_name, msg, m_dt);
+                                    panel.Controls.Add(bubble);
+                                    panel.ScrollControlIntoView(bubble);
+                                }
+                                else //파일 수신
+                                {
+                                    opponentFileBubble bubble = new opponentFileBubble(i_file, user_name, m_dt);
+                                    panel.Controls.Add(bubble);
+                                    panel.ScrollControlIntoView(bubble);
+                                }
+                            }
                         }
+                        
                         
 
 
@@ -157,6 +169,21 @@ namespace TheRoadChat
                     {
                         chat.thisForm.updateData();
                         chat.thisForm.updateLayout();
+                    }));
+                }
+            });
+
+            client.On("tag", (Data) =>
+            {
+                string json = Data[0].ToString();
+                int idx = 0;
+
+                if (chat.myName.CompareTo(json) == 0)
+                {
+                    mychatForm.Invoke(
+                    (System.Action)(() =>
+                    {
+                        MessageBox.Show("@" + json);
                     }));
                 }
             });

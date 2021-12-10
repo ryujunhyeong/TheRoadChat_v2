@@ -127,6 +127,24 @@ namespace TheRoadChat
             if (string.IsNullOrEmpty(textBoxMsgInput.Text) == true)
                 return;
 
+            if(textBoxMsgInput.Text[0]== '@')
+            {
+                if(textBoxMsgInput.Text.Length == 4)
+                {
+                    foreach (friendInfo friend in chat.thisForm.friendList)
+                    {
+                        if (friend.name.CompareTo(textBoxMsgInput.Text.Substring(1,3)) == 0)
+                        {
+                            socketIO.client.Emit("tag", friend.name);
+                            textBoxMsgInput.Text = "";
+                            return;
+                        }
+                    }
+                }
+                
+                
+            }
+
             socketIO.client.Emit("chat message", new messageInfo(this.i_user, this.i_channel, chat.myName, textBoxMsgInput.Text, DateTime.Now.ToString("HHmmss"),0));
 
             messages.Add(new messageInfo(this.i_user, this.i_channel, chat.myName, textBoxMsgInput.Text, DateTime.Now.ToString("HHmmss"),0));

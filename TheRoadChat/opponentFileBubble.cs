@@ -15,6 +15,7 @@ namespace TheRoadChat
     {
         public int i_file;
         public string filePath;
+        public int i_user;
         public opponentFileBubble(int i_file, string name, string time)
         {
             InitializeComponent();
@@ -22,6 +23,23 @@ namespace TheRoadChat
             this.i_file = i_file;
             labelFriendName.Text = name;
             labelTime.Text = time;
+            this.i_user = DBManager.thisDBManager.get_i_userFromName(name);
+            showProfile();
+        }
+
+        public void showProfile()
+        {
+            string FileName = this.i_user + ".png";
+            string FilePath = @System.IO.Directory.GetCurrentDirectory() + "\\profile\\" + FileName;
+
+            FileInfo fileInfo = new FileInfo(FilePath); //해당 경로 파일 확인
+
+            if (fileInfo.Exists == false) //파일이 없는 경우
+            {
+                DBManager.thisDBManager.pullProfile(this.i_user);
+            }
+
+            FriendImg.Load(FilePath);
         }
 
         private void buttonSave_Click(object sender, EventArgs e)

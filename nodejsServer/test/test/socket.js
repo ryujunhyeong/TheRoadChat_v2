@@ -82,6 +82,12 @@ var chat = io.on("connection", function (socket) {
     socket.broadcast.emit("checkFriend", data);
   });
 
+  socket.on("tag", function (data) {
+    console.log("checkFriend : " + data);
+
+    socket.broadcast.emit("tag", data);
+  });
+
   socket.on("disconnect", function () {
     console.log("user disconnected: " + socket.id);
   });

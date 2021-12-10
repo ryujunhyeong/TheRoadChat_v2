@@ -40,6 +40,8 @@ namespace TheRoadChat
             this.buttonImgOrFileSend = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.buttonEmoticon = new System.Windows.Forms.Button();
+            this.comboBox_theme = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonClose)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,6 +63,7 @@ namespace TheRoadChat
             this.PanelMsg.Name = "PanelMsg";
             this.PanelMsg.Size = new System.Drawing.Size(415, 440);
             this.PanelMsg.TabIndex = 1;
+            this.PanelMsg.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMsg_Paint);
             // 
             // textBoxMsgInput
             // 
@@ -142,11 +145,35 @@ namespace TheRoadChat
             this.buttonEmoticon.UseVisualStyleBackColor = true;
             this.buttonEmoticon.Click += new System.EventHandler(this.buttonEmoticon_Click);
             // 
+            // comboBox_theme
+            // 
+            this.comboBox_theme.FormattingEnabled = true;
+            this.comboBox_theme.Items.AddRange(new object[] {
+            "강렬한 파랑",
+            "보편적인 베이지",
+            "정렬의 레드"});
+            this.comboBox_theme.Location = new System.Drawing.Point(224, 5);
+            this.comboBox_theme.Name = "comboBox_theme";
+            this.comboBox_theme.Size = new System.Drawing.Size(144, 20);
+            this.comboBox_theme.TabIndex = 11;
+            this.comboBox_theme.SelectedIndexChanged += new System.EventHandler(this.comboBox_theme_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(161, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 12);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "테마 변경";
+            // 
             // InChannelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(417, 600);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboBox_theme);
             this.Controls.Add(this.buttonEmoticon);
             this.Controls.Add(this.buttonImgOrFileSend);
             this.Controls.Add(this.buttonInvite);
@@ -180,5 +207,7 @@ namespace TheRoadChat
         private System.Windows.Forms.Button buttonImgOrFileSend;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button buttonEmoticon;
+        private System.Windows.Forms.ComboBox comboBox_theme;
+        private System.Windows.Forms.Label label1;
     }
 }

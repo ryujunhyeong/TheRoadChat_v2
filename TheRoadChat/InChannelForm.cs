@@ -298,5 +298,26 @@ namespace TheRoadChat
             socketIO.client.Emit("chat message", new messageInfo(this.i_user, this.i_channel, chat.myName, path, DateTime.Now.ToString("HHmmss"), -1));
             messages.Add(new messageInfo(this.i_user, this.i_channel, chat.myName, path, DateTime.Now.ToString("HHmmss"), -1));
         }
+
+        private void PanelMsg_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void comboBox_theme_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_theme.SelectedIndex == 0)
+            {
+                PanelMsg.BackColor = Color.Blue;
+            }
+            else if (comboBox_theme.SelectedIndex == 1)
+            {
+                PanelMsg.BackColor = Color.Beige;
+            }
+            else if (comboBox_theme.SelectedIndex == 2)
+            {
+                PanelMsg.BackColor = Color.Red;
+            }
+        }
     }
 }

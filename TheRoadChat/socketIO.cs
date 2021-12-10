@@ -29,8 +29,8 @@ namespace TheRoadChat
 
         public void socketinit()
         {
-            string awsAddress = "ec2-3-20-205-174.us-east-2.compute.amazonaws.com";
-            client = new SocketIOClient(new SocketIOClientOption(EngineIOScheme.http, "localhost", 3000));
+            string awsAddress = "ec2-18-218-104-123.us-east-2.compute.amazonaws.com";
+            client = new SocketIOClient(new SocketIOClientOption(EngineIOScheme.http, awsAddress, 3000));
             InitEventHandlers(client);
             client.Connect();
 

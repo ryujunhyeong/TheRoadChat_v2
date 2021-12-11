@@ -77,6 +77,28 @@ namespace TheRoadChat
 
         private void changeInfoBtn_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void selectAddrBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Join_button_picture_pull_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                textBox_Path.Text = DBManager_.GetInstance().picture_open();
+                pictureBox_main.Load(@textBox_Path.Text);
+                pictureBox_main.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            catch { }
+            
+        }
+
+        private void changeInfoBtn_Click_1(object sender, EventArgs e)
+        {
             string protectedPw = join.ProtectedPw.ConvertToSimpleEncoding(changePw.Text);
 
 
@@ -91,16 +113,12 @@ namespace TheRoadChat
             }
 
             this.chatForm.Close();
-
+            DBManager_.GetInstance().button_save(textBox_Path.Text, this.ID);
             chat mychat = new chat(this.loginForm, this.i_user, changeName.Text, this.ID);
-
             mychat.Show();
 
             this.Close();
-        }
 
-        private void selectAddrBtn_Click(object sender, EventArgs e)
-        {
 
         }
     }

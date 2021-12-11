@@ -24,8 +24,8 @@ namespace TheRoadChat
             try
             {
                 OpenFileDialog openFileDialog1 = new OpenFileDialog(); // 파일 탐색기 열림
-                openFileDialog1.Filter = "Image files(*.jpg) | *.jpg |" + // jpg와 png만 선택가능
-                                         "이미지 파일(*.png) | *.png";
+                openFileDialog1.Filter = "이미지 파일(*.png) | *.png";// jpg와 png만 선택가능
+
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     return openFileDialog1.FileName; // 선택한 파일명 텍스트박스에 저장
@@ -70,5 +70,7 @@ namespace TheRoadChat
             }
             catch (Exception ex) { }
         }
+
+
     }
 }

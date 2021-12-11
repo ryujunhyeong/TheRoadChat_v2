@@ -232,5 +232,10 @@ namespace TheRoadChat
 
             timeLabel.Text = System.DateTime.Now.ToString("MM-dd hh:mm:ss");
         }
+
+        private void userImg_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

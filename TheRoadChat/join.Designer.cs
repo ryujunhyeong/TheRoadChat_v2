@@ -69,7 +69,7 @@ namespace TheRoadChat
             // 
             // Join_button_picture_pull
             // 
-            this.Join_button_picture_pull.Location = new System.Drawing.Point(493, 98);
+            this.Join_button_picture_pull.Location = new System.Drawing.Point(495, 220);
             this.Join_button_picture_pull.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Join_button_picture_pull.Name = "Join_button_picture_pull";
             this.Join_button_picture_pull.Size = new System.Drawing.Size(66, 18);
